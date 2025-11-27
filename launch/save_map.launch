@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="path"/>
+  <executable
+    cmd="/slam_toolbox/save_map slam_toolbox/srv/SaveMap '{name: {data: '$(var path)'}}'"
+    launch-prefix="ros2 service call"
+    output="screen"
+  />
+  <executable
+    cmd="/slam_toolbox/serialize_map slam_toolbox/srv/SerializePoseGraph '{filename: '$(var path)'}'"
+    launch-prefix="ros2 service call"
+    output="screen"
+  />
+</launch>

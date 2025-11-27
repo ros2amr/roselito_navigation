@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="path"/>
+  <include file="$(find-pkg-share slam_toolbox)/launch/localization_launch.py">
+    <arg name="use_sim_time" value="$(var use_sim_time)"/>
+  </include>
+  <!-- Ask SLAM process to load map starting at pose (x, y, theta) = (0, 0, 0) -->
+  <executable
+    cmd="/slam_toolbox/deserialize_map slam_toolbox/srv/DeserializePoseGraph '{filename: '$(var path)', match_type: 3}'"
+    launch-prefix="ros2 service call"
+    output="screen"
+  />
+</launch>
